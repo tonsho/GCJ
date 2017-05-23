@@ -31,18 +31,18 @@ def solve(k, cakes):
             max_side_n_top = s
 
     surfaces_ordered_by_side = sorted(surfaces, reverse=True, key=lambda x:x['side'])
-    max_top_in_k = {'top': 0.0}
+    max_top_in_k = {'r': 0.0, 'top': 0.0}
     stacked_sides = 0.0
     stacked_r = 0
     for s in surfaces_ordered_by_side[:k]:
         stacked_sides += s['side']
-        if max_top_in_k['top'] < s['top']:
+        if max_top_in_k['top'] < s['top'] and max_top_in_k['r'] < s['r']:
             max_top_in_k = s
 
     if max_side_n_top is max_top_in_k:
         return (stacked_sides + max_side_n_top['top']) * pi
     else:
-        stacked_sides += (max_side_n_top['side'] - surfaces_ordered_by_side[k]['side'])
+        stacked_sides += (max_side_n_top['side'] - surfaces_ordered_by_side[k - 1]['side'])
         return (stacked_sides + max_side_n_top['top']) * pi
 
 
