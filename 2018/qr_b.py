@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-import numpy as np
-
-
 def main():
     t = int(input())  # read a line with a single integer
     for i in range(1, t + 1):
@@ -28,11 +25,11 @@ def solve(nums):
     # correct sort
     nums.sort()
 
-    if nums == ts_nums:
-        return 'OK'
+    for i, (x, y) in enumerate(zip(nums, ts_nums)):
+        if x != y:
+            return i
 
-    matches = np.array(nums) == ts_nums
-    return matches.argmin()
+    return 'OK'
 
 
 if __name__ == '__main__':
